@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 
 public class JavaFxApplication extends Application {
@@ -24,11 +25,7 @@ public class JavaFxApplication extends Application {
 
     @Override
     public void start(Stage stage) {
-        FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
-        Parent root = fxWeaver.loadView(ChartController.class);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        applicationContext.publishEvent(new StageReadyEvent(stage)); //?
     }
 
     @Override
@@ -36,5 +33,16 @@ public class JavaFxApplication extends Application {
         this.applicationContext.close();
         Platform.exit();
     }
+
+    static class StageReadyEvent extends ApplicationEvent{
+        public StageReadyEvent(Stage stage) {
+            super(stage);
+        }
+
+        public Stage getStage() {
+            return ((Stage)getSource());
+        }
+    }
+
 
 }
