@@ -1,2 +1,5 @@
-# javafx-weaver-example
-Example repository for blog post about Spring Boot and JavaFX integration
+# stocks-ui
+JavaFX/Spring application which build the chart based on the FLUX stream
+
+# demo 
+https://streamable.com/cl785
