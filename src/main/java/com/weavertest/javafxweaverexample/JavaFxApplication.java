@@ -2,10 +2,7 @@ package com.weavertest.javafxweaverexample;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -19,13 +16,13 @@ public class JavaFxApplication extends Application {
         String[] args = getParameters().getRaw().toArray(new String[0]);
 
         this.applicationContext = new SpringApplicationBuilder()
-                .sources(SpringBootExampleApplication.class)
+                .sources(StocksUIStarter.class)
                 .run(args);
     }
 
     @Override
     public void start(Stage stage) {
-        applicationContext.publishEvent(new StageReadyEvent(stage)); //?
+        applicationContext.publishEvent(new StageReadyEvent(stage));
     }
 
     @Override
@@ -34,13 +31,13 @@ public class JavaFxApplication extends Application {
         Platform.exit();
     }
 
-    static class StageReadyEvent extends ApplicationEvent{
+    static class StageReadyEvent extends ApplicationEvent {
         public StageReadyEvent(Stage stage) {
             super(stage);
         }
 
         public Stage getStage() {
-            return ((Stage)getSource());
+            return ((Stage) getSource());
         }
     }
 

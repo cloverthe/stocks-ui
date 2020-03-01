@@ -3,11 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <VBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.weavertest.javafxweaverexample.ChartController"
-            prefHeight="100.0" prefWidth="350.0" spacing="10" alignment="CENTER">
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.weavertest.javafxweaverexample.ChartController">
+    <LineChart fx:id="chart" prefHeight="600">
+    <xAxis>
+        <CategoryAxis label="Time"/>
+    </xAxis>
+        <yAxis>
+            <NumberAxis label="Price"/>
+        </yAxis>
+    </LineChart>
 
-    <Label fx:id="weatherLabel"/>
-    <Button onAction="#loadWeatherForecast">Get chart</Button>
+
 </VBox>

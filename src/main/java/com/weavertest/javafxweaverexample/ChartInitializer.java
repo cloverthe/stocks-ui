@@ -25,7 +25,7 @@ public class ChartInitializer implements ApplicationListener<StageReadyEvent> {
         Stage stage = event.getStage();
         FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(ChartController.class);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
     }
